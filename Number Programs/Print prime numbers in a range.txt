@@ -1,0 +1,66 @@
+Print prime numbers in a range
+
+1.A =>  Basic Method
+          int start = 10;
+	      int end = 20;
+	      
+	      for(int i = start; i <= end; i++){
+	          if(i <= 1)
+	              continue;
+	          
+	          boolean isPrime = true;
+	          for(int j = 2; j < i; j++){
+	              if(i % j == 0){
+	                  isPrime = false;
+	              }
+	          }
+	           if(isPrime)
+	              System.out.println(i + " ");
+	          
+	      }
+		Time Complexity => O(n²)
+        Space Complexity => O(1)
+
+2.A =>  Optimized
+            int start = 10;
+	      int end = 20;
+	      
+	      for(int i = start; i <= end; i++){
+	          if(i <= 1)
+	              continue;
+	          
+	          boolean isPrime = true;
+	          for(int j = 2; j * j <= i; j++){
+	              if(i % j == 0){
+	                  isPrime = false;
+	              }
+	          }
+	           if(isPrime)
+	              System.out.println(i + " ");
+	          
+	      }
+		Time Complexity => O(n√n)
+        Space Complexity => O(1) 
+		
+3.A =>  Sieve of Eratosthenes (Advanced)
+        int n = 30;
+		
+		boolean[] prime = new boolean[n + 1];
+		for(int i = 2; i <= n; i++){
+		    prime[i] = true;
+		}
+		
+		for(int i = 2; i * i <= n; i++){
+		    if(prime[i]){
+		        for(int j = i * i; j <=n; j += i){
+		            prime[j] = false;
+		        }
+		    }
+		}
+		for(int i = 2; i <= n; i++){
+		    if(prime[i]){
+		        System.out.print(i + " ");
+		    }
+		}		
+		Time Complexity => O(n log log n)
+        Space Complexity => O(n) 
