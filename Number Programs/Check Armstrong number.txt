@@ -1,0 +1,55 @@
+Check Armstrong number
+
+1.A =>  BRUTE FORCE (String method)
+          	int n = 153;
+		String s = String.valueOf(n);
+		int power = s.length();
+		
+		int sum = 0;
+		
+		for(int i = 0; i < s.length(); i++){
+		    int digit = s.charAt(i) - '0';
+		    sum += Math.pow(digit, power);
+		}
+		if(n == sum){
+		    System.out.println("Armstrong");
+		}
+		else {
+		    System.out.print("Not");
+		}
+		
+		Time Complexity => O(log n)
+        Space Complexity => O(log n)
+		
+		Time Complexity: O(d) ≈ O(log n), where d is the number of digits.Since the number of digits in n is: d=⌊log 10(n)⌋+1 we can write: O(d)=O(logn)
+	​    Space Complexity: O(d) ≈ O(log n), due to the string created from the number.
+
+2.A =>  OPTIMAL (FAANG Preferred)
+              int n = 153;
+	     int original = n;
+	     
+	     //firest at we need to count restu
+	     
+	     int temp = n;
+	     int restu = 0;
+	     while(temp >0){
+	         restu++;
+	         temp = temp / 10;
+	     }
+	     //now we need sum and digit to 
+	     int sum = 0;
+	     int tempo = n;
+	     while(tempo > 0){
+	         int digit = tempo % 10;
+	         sum += Math.pow(digit, restu);
+	         tempo = tempo / 10;
+	     }
+	  
+	      if(original == sum){
+	          System.out.println("Armstrong");
+	      }
+	      else {
+	          System.out.println("Not");
+	      }
+        Time Complexity => O(log n)
+        Space Complexity => O(1)		  
