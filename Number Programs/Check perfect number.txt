@@ -1,0 +1,49 @@
+Check perfect number 
+
+1.A =>  Brute Force (Simple Loop)
+          int num = 12;
+	    int sum = 0;
+	    for(int i = 1; i < num; i++){
+	       int a = num % i;
+	       if(num % i == 0){
+	           sum = sum + i;
+	       }
+	       
+	    }
+	    if(sum == num){
+	        System.out.println("Perfect Number");
+	    }
+	    else {
+	        System.out.println("Not");
+	    }
+		Time Complexity => O(n)
+        Space Complexity => O(1)
+		Start from 1 → because every number is divisible by 1.
+        Go till n-1 → because we need proper divisors only.
+        n % i == 0 → means i divides n exactly, so i is a factor.
+		
+2.A =>  Better (Loop till √n)
+         int n = 6;
+	    int sum = 0;
+	    for(int i = 1; i * i <= n; i++){
+	        if(n % i == 0){
+	            if(i == n / i){
+	                sum += i;
+	            }
+	            else {
+	                sum = sum + i + n/i;
+	            }
+	            
+	        }
+	    }
+	    sum = sum - n;
+	    
+	    if(sum == n){
+	        System.out.println("Perfect Number");
+	    }
+	    else {
+	        System.out.println("Not");
+	    }
+	    Time Complexity => O(n)
+        Space Complexity => O(1)
+         		

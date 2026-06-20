@@ -1,0 +1,44 @@
+Swap two numbers (without temp)
+
+1.A =>  Addition and Subtraction (Most Common)
+         int a = 10;
+	     int b = 13;
+	     a = a + b;
+	     b = a - b;
+	     a = a - b;
+	     System.out.println(a + " " + b);
+		 
+		Time Complexity => O(1)
+        Space Complexity => O(1)
+
+2.A =>  Multiplication and Division
+          int a = 10;
+	     int b = 13;
+	     a = a * b;
+	     b = a / b;
+	     a = a / b;
+	     System.out.println(a + " " + b);		
+		 
+		 Time Complexity => O(1)
+        Space Complexity => O(1)
+		
+3.A =>  XOR Method (Most Optimized Bitwise)
+          int a = 10;
+	     int b = 13;
+	     a = a ^ b;
+	     b = a ^ b;
+	     a = a ^ b;
+	     System.out.println(a + " " + b);
+
+        Time Complexity => O(1)
+        Space Complexity => O(1)
+		
+        If asked:
+        Is addition swap safe?
+        You should say:
+		No, it can cause integer overflow when values are large. That’s why temp-variable swap is preferred in real systems.”		
+        
+        Addition swap = math risk (overflow)
+        XOR swap = logic trick
+        Temp swap = real-world safe		
+		
