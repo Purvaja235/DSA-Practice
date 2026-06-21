@@ -1,4 +1,4 @@
-Check strong number
+Check Strong Number
 
 1.A =>  Brute Force / Standard Approach
           int n = 145;
@@ -42,4 +42,4 @@ Check strong number
             System.out.println("Not Strong Number");
         }	  
 		Time Complexity => O(log n)
-        Space Complexity => O(1)
+        Space Complexity => O(1) 
