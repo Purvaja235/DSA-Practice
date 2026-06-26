@@ -1,0 +1,45 @@
+Sum of first N natural numbers
+
+1.A =>  Brute Force (Loop)
+         int n = 5;
+        int result = 0;
+        for(int i = 1; i<= n; i++){
+            result += i; 
+        }
+       System.out.println(result);
+	   Time Complexity => O(n)
+       Space Complexity => O(1)
+	   
+2.A =>  Recursion
+           class Main
+        {
+        static int sum(int n){
+           if(n == 0)
+               return 0;
+           
+           return n + sum(n - 1);
+       
+        }
+       	public static void main(String[] args) {
+       	    int n = 5;
+       	    System.out.println(sum(n));
+         	}
+        }	   
+		Time Complexity => O(n)
+        Space Complexity => O(n)
+		
+3.A =>  Most Optimized Approach (Formula)
+        1 + 2 + 3 + ... + n = n(n+1)/2
+         
+           int n = 5;
+       int result = n * (n + 1) / 2;
+       System.out.println(result);
+	   Time Complexity => O(1)
+       Space Complexity => O(1)
+	   
+	   FAANG-Level Follow-Up
+       Sum from a to b
+       10 + 11 + 12 + ... + 20
+       Formula:
+       Sum(1 to b) - Sum(1 to a-1)
+       long ans =(b * (b + 1) / 2)-((a - 1) * a / 2);

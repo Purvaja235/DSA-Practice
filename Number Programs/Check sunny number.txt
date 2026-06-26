@@ -1,0 +1,63 @@
+Check sunny number
+
+1.A =>  Brute Force
+        Logic:- Compute n + 1.
+		Check every number from 1 to n + 1.
+		If i * i == n + 1, then it is a Sunny Number.
+		
+	   int n = 8;
+       int com = n + 1;
+       boolean isSunay = false;
+       for(int i = 1; i< n; i++){
+           if(i * i == com){
+                isSunay = true; 
+                break;
+           }
+           
+       }
+       if(isSunay){
+           System.out.println("Sunnay Number");
+       }
+       else{
+           System.out.println("Not");
+       }
+	   Time Complexity => O(n)
+       Space Complexity => O(1)
+
+2.A =>  Better Approach
+         We know that if i² > n + 1, there is no need to continue.
+          int n = 8;
+       int com = n + 1;
+       boolean isSunay = false;
+       for(int i = 1; i * i<= com; i++){
+           if(i * i == com){
+                isSunay = true; 
+                break;
+           }
+           
+       }
+       if(isSunay){
+           System.out.println("Sunnay Number");
+       }
+       else{
+           System.out.println("Not");
+       }		 
+	   Time Complexity => O(√n)
+       Space Complexity => O(1)
+	   
+3.A =>  Most Optimized Approach
+        Logic
+        Compute n + 1.
+        Find its square root.
+        If the square root is an integer, then it is a Sunny Number.	   
+		 int n = 8;
+       int com = n + 1;
+       int root = (int)Math.sqrt(com);
+       if(root * root == com){
+           System.out.println("Sunnay Number");
+       }
+       else{
+           System.out.println("Not");
+       }
+	   Time Complexity => O(1)
+       Space Complexity => O(1)

@@ -1,0 +1,38 @@
+Check automorphic number
+
+1.A =>  (Using %)
+          int n = 7;
+	      int temp = n;
+	      int square = n * n;
+	      int digit = 0;
+	       while(temp > 0){
+	      digit++;
+	        temp /= 10;
+        	}
+         	System.out.println(digit);
+	
+         	int power = 1;
+        	for(int i = 1; i <= digit; i++){
+	        power *= 10;
+	      }
+	      int lastDigit = square % power;
+	      if(n == lastDigit){
+	      System.out.print("Automorphic Number");
+         	}else {
+            System.out.println("Not Automorphic");
+          }
+		  Time Complexity => O(log n)
+          Space Complexity => O(1)
+		  
+2.A =>  (Using String) - Easy for Beginners
+            int n = 5;
+	       String s = String.valueOf(n);
+	        String square = String.valueOf(n * n);
+	       if(square.endsWith(s)){
+	       System.out.println("Automorphic Number");
+	        }
+	      else {
+	        System.out.println("Not");
+        	}		  
+		 Time Complexity => O(log n)
+         Space Complexity => O(log n) 
