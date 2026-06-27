@@ -1,1 +1,71 @@
 Convert decimal to binary
+
+Decimal Number System (Base 10)
+The decimal number system is the number system we use in our daily life.
+It has 10 digits:
+0, 1, 2, 3, 4, 5, 6, 7, 8, 9
+
+Binary Number System (Base 2)
+The binary number system is used by computers.
+It has only 2 digits:
+0 and 1
+
+1.A =>  Brute Force (Using String)
+        Logic:= Repeatedly divide the number by 2.
+                Store the remainder (0 or 1) in a string.
+                Reverse the string.
+		int a = 13;
+		String s = String.valueOf(a);
+		String rem = "";
+		while(a > 0){
+		    int digit = a % 2;
+		    rem =digit + rem;
+		    a = a / 2;
+		}
+		System.out.println(rem);
+        Time Complexity => O(log₂ n)
+        Space Complexity => O(log₂ n)		
+	   
+2.A =>  Better Approach (Using StringBuilder)
+        String concatenation creates new strings repeatedly. Use StringBuilder.
+        int a = 13;
+		StringBuilder sb = new StringBuilder();
+		while(a > 0){
+		   sb.append(a % 2);
+		    a = a / 2;
+		}
+		System.out.println(sb.reverse());		
+		Time Complexity => O(log n)
+        Space Complexity => O(log n)
+		
+3.A =>  Most Optimized Approach (Without Extra Space)
+        For interview questions, they sometimes expect you to build the binary number mathematically.		
+		int a = 13;
+		int binary = 0;
+		int place = 1;
+		
+		while(a > 0){
+		    int rem = a % 2;
+		    binary = binary + rem * place;
+		    place *= 10;
+		    a = a / 2;
+		}
+		System.out.println(binary);
+		Time Complexity => O(log₂ n)
+        Space Complexity => O(1)
+		
+		Why do we divide by 2?
+        Because binary is based on powers of 2.
+        Each division gives the next binary digit.
+        13 ÷ 2 = 6 remainder 
+		16 ÷ 2 = 3 remainder 0
+        3 ÷ 2 = 1 remainder 1
+        1 ÷ 2 = 0 remainder 1
+
+        Read remainders from bottom to top:
+        1101
+		
+4.A =>  Can we use built-in methods?
+        Integer.toBinaryString(n)
+        int a = 13;
+		System.out.println(Integer.toBinaryString(a));		

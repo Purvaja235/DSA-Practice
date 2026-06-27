@@ -1,0 +1,24 @@
+Find square root
+
+1.A =>  Brute Force
+        int a = 25;
+	     for(int i = 1; i< 25; i++){
+	         if(i * i == a){
+	             System.out.println("SquareRoot" + i);
+	         }
+	     }
+		 Time Complexity => O(n)
+        Space Complexity => O(1)
+		
+2.A =>  Better Approach
+        int a = 25;
+	     for(int i = 1; i <= a/2; i++){
+	         if(i * i== a){
+	             System.out.println("SquareRoot" + i);
+	         }
+	     }
+          Time Complexity => O(n)
+        Space Complexity => O(1)
+
+3.A =>  Most Optimized Approach (Binary Search)
+		

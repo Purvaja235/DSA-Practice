@@ -1,0 +1,30 @@
+Sum of squares of digits
+
+1.A =>  Brute Force Approach
+        Extract each digit using % 10.Find its square.Add it to the sum.
+		int n = 123;
+		int digit = 0;
+		int sum = 0;
+		while(n > 0){
+		    digit = n % 10;
+		    int sqre = digit * digit;
+		    sum += sqre; 
+		    n = n / 10;
+		}
+		System.out.println(sum);
+		Time Complexity => O(log n)
+        Space Complexity => O(1)
+		
+2.A =>  Better Approach (Using Math.pow)
+        int n = 123;
+		int digit = 0;
+		int sum = 0;
+		while(n > 0){
+		    digit = n % 10;
+		    int sqre = (int)Math.pow(digit, 2);
+		    sum += sqre; 
+		    n = n / 10;
+		}
+		System.out.println(sum);
+        Time Complexity => O(log n)
+        Space Complexity => O(1)		

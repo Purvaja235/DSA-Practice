@@ -1,0 +1,19 @@
+Check buzz number
+
+1.A =>  Brute Force Approach
+        int n = 14;
+		    if(n % 10 == 7 || n % 7 == 0){
+		        System.out.println("Buzz");
+		    } else
+		    {
+		        System.out.println("Not");
+		    }
+	    Time Complexity => O(1)
+        Space Complexity => O(1)		
+		
+2.A =>  Most Optimized Approach
+         int n = 15;
+		boolean isBuzz = n % 10 == 7 || n % 7 == 0;
+		    System.out.println(isBuzz ? "Yes" : "No");
+		Time Complexity => O(1)
+        Space Complexity => O(1)	
