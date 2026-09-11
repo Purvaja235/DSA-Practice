@@ -1,0 +1,497 @@
+/*
+===========================================================
+Problem Name : Add Digits Until Single Digit
+LeetCode     : 258 - Add Digits
+Category     : Number Programs → Digit Manipulation → Digital Root
+Difficulty   : Easy
+Importance   : Very Important for Java Fresher Interviews
+===========================================================
+
+PROBLEM STATEMENT:
+Given an integer num, repeatedly add all its digits until
+the result has only one digit.
+
+Return the final single-digit result.
+
+Example 1:
+Input  : 38
+Process: 38 → 3 + 8 = 11 → 1 + 1 = 2
+Output : 2
+
+Example 2:
+Input  : 12345
+Process: 12345 → 1 + 2 + 3 + 4 + 5 = 15
+         15 → 1 + 5 = 6
+Output : 6
+
+Example 3:
+Input  : 0
+Output : 0
+
+===========================================================
+CONCEPTS USED:
+1. Modulus operator (%) → Extracts the last digit.
+2. Integer division (/) → Removes the last digit.
+3. while loop → Repeats the digit-sum process.
+4. Nested loops → Inner loop calculates the digit sum,
+   outer loop repeats until one digit remains.
+5. Running sum → Stores the sum of digits in one round.
+6. Digital root → The final single-digit result after
+   repeatedly adding the digits.
+7. Modulo 9 property → Helps calculate the digital root
+   directly in O(1) time.
+
+===========================================================
+APPROACHES:
+1. Brute Force / Simulation:
+   Repeatedly calculate the sum of digits using nested loops
+   until the number becomes a single digit.
+
+2. Better Approach:
+   Use a simpler digit-processing structure if possible.
+   However, it still requires digit processing and does not
+   improve the asymptotic complexity significantly.
+
+3. Optimal Approach:
+   Use the digital root formula:
+
+   result = 1 + (num - 1) % 9
+
+   Handle num = 0 separately because its digital root is 0.
+
+===========================================================
+APPROACH 1: BRUTE FORCE / SIMULATION
+===========================================================
+
+LOGIC:
+1. Store the number in num.
+2. Initialize sum = 0.
+3. Run the outer loop while num >= 10.
+4. Reset sum = 0 for every round.
+5. Extract each digit using num % 10.
+6. Add the digit to sum.
+7. Remove the last digit using num / 10.
+8. Assign num = sum after one complete round.
+9. Repeat until num becomes a single digit.
+10. Print num.
+
+===========================================================
+DRY RUN - BRUTE FORCE:
+Input: 38
+
+ROUND 1:
+
+num       digit       sum
+38          8           8
+3           3          11
+0           -          Stop
+
+After Round 1:
+num = sum = 11
+
+ROUND 2:
+
+num       digit       sum
+11          1           1
+1           1           2
+0           -          Stop
+
+After Round 2:
+num = sum = 2
+
+Since num = 2, the outer loop stops.
+
+Output: 2
+
+===========================================================
+TIME COMPLEXITY - BRUTE FORCE:
+O(d), approximately, where d = number of digits.
+
+SPACE COMPLEXITY - BRUTE FORCE:
+O(1), constant extra space.
+
+===========================================================
+EDGE CASES - BRUTE FORCE:
+1. num = 0       → Output 0
+2. num = 7       → Output 7
+3. num = 38      → Output 2
+4. num = 99      → Output 9
+5. num = 12345   → Output 6
+6. num = 1000    → Output 1
+
+===========================================================
+COMMON MISTAKES - BRUTE FORCE:
+1. Using while (num < 10) instead of while (num >= 10).
+2. Forgetting to reset sum = 0 before every round.
+3. Forgetting num = sum after calculating the digit sum.
+4. Using only one loop, which calculates the digit sum once.
+5. Printing sum instead of num.
+6. Forgetting to handle numbers that are already single digits.
+7. Confusing num % 10 with num / 10.
+
+===========================================================
+CODE - BRUTE FORCE / SIMULATION:
+===========================================================
+*/
+
+public class Main {
+    public static void main(String[] args) {
+
+        // 1. Input
+        int num = 12345;
+
+        // 2. Initialize sum
+        int sum = 0;
+
+        // 3. Repeat until num becomes a single digit
+        while (num >= 10) {
+
+            // Reset sum for the current round
+            sum = 0;
+
+            // 4. Calculate the sum of digits
+            while (num > 0) {
+
+                // Extract the last digit
+                int digit = num % 10;
+
+                // Add digit to sum
+                sum += digit;
+
+                // Remove the last digit
+                num = num / 10;
+            }
+
+            // 5. Use the calculated sum as the new number
+            num = sum;
+        }
+
+        // 6. Output
+        System.out.println("Final single digit = " + num);
+    }
+}
+
+/*
+===========================================================
+APPROACH 2: BETTER APPROACH
+===========================================================
+
+NOTE:
+The nested-loop solution is already clear and efficient for
+normal integer inputs. There is no significantly better
+loop-based approach that improves the asymptotic complexity.
+
+A complicated single-loop variation is possible, but it is
+less readable and is not recommended for interviews.
+
+Therefore:
+- Use the nested-loop solution for learning and simulation.
+- Use the digital root formula for the optimal solution.
+
+===========================================================
+APPROACH 3: OPTIMAL APPROACH - DIGITAL ROOT
+===========================================================
+
+OBSERVATION:
+Repeatedly adding digits until one digit remains is called
+finding the digital root.
+
+For a positive integer:
+
+digital root = 1 + (num - 1) % 9
+
+For zero:
+
+digital root = 0
+
+Therefore:
+1. If num == 0, result is 0.
+2. Otherwise, calculate:
+      1 + (num - 1) % 9
+3. Print the result.
+
+===========================================================
+WHY DOES THE FORMULA WORK?
+===========================================================
+
+The sum of a number's digits has the same remainder as the
+number itself when divided by 9.
+
+For example:
+
+38 % 9 = 2
+
+Digit sum:
+3 + 8 = 11
+
+11 % 9 = 2
+
+Again:
+1 + 1 = 2
+
+Final result = 2
+
+The formula uses (num - 1) so that positive multiples of 9
+return 9 instead of 0.
+
+Example:
+
+99 % 9 = 0
+
+But:
+
+99 → 18 → 9
+
+So the answer must be 9.
+
+Formula:
+
+1 + (99 - 1) % 9
+1 + 98 % 9
+1 + 8
+9
+
+===========================================================
+DRY RUN - OPTIMAL FORMULA:
+===========================================================
+
+Example 1:
+Input: 38
+
+result = 1 + (38 - 1) % 9
+       = 1 + 37 % 9
+       = 1 + 1
+       = 2
+
+Output: 2
+
+-----------------------------------------------------------
+
+Example 2:
+Input: 12345
+
+result = 1 + (12345 - 1) % 9
+       = 1 + 12344 % 9
+       = 1 + 5
+       = 6
+
+Output: 6
+
+-----------------------------------------------------------
+
+Example 3:
+Input: 99
+
+result = 1 + (99 - 1) % 9
+       = 1 + 98 % 9
+       = 1 + 8
+       = 9
+
+Output: 9
+
+-----------------------------------------------------------
+
+Example 4:
+Input: 7
+
+result = 1 + (7 - 1) % 9
+       = 1 + 6 % 9
+       = 1 + 6
+       = 7
+
+Output: 7
+
+-----------------------------------------------------------
+
+Example 5:
+Input: 0
+
+Since num == 0:
+
+result = 0
+
+Output: 0
+
+===========================================================
+TIME COMPLEXITY - OPTIMAL:
+O(1), constant time.
+
+SPACE COMPLEXITY - OPTIMAL:
+O(1), constant extra space.
+
+LOOPS:
+No loops.
+
+RECURSION:
+No recursion.
+
+===========================================================
+CODE - OPTIMAL DIGITAL ROOT FORMULA:
+===========================================================
+*/
+
+public class Main {
+    public static void main(String[] args) {
+
+        // 1. Input
+        int num = 12345;
+
+        // 2. Calculate the digital root
+        int result;
+
+        if (num == 0) {
+            result = 0;
+        } else {
+            result = 1 + (num - 1) % 9;
+        }
+
+        // 3. Output
+        System.out.println("Final single digit = " + result);
+    }
+}
+
+/*
+===========================================================
+SHORTER OPTIMAL VERSION:
+===========================================================
+*/
+
+public class Main {
+    public static void main(String[] args) {
+
+        int num = 12345;
+
+        int result = (num == 0) ? 0 : 1 + (num - 1) % 9;
+
+        System.out.println("Final single digit = " + result);
+    }
+}
+
+/*
+===========================================================
+APPROACH COMPARISON:
+===========================================================
+
+Approach 1: Brute Force / Simulation
+- Uses nested loops.
+- Repeatedly calculates digit sums.
+- Easy to understand.
+- Time: O(d)
+- Space: O(1)
+
+Approach 2: Better Loop-Based Approach
+- No meaningful asymptotic improvement.
+- Complicated variations are less readable.
+- Not recommended over nested loops.
+
+Approach 3: Optimal Digital Root
+- Uses mathematical modulo 9 property.
+- No loops or recursion.
+- Time: O(1)
+- Space: O(1)
+- Best for the LeetCode follow-up.
+
+===========================================================
+INTERVIEW EXPLANATION:
+===========================================================
+
+The brute-force solution repeatedly calculates the sum of
+digits until only one digit remains. The inner loop extracts
+and sums the digits, while the outer loop repeats the process.
+
+The optimized solution uses the digital root property.
+For a positive number, the digital root is calculated using
+1 + (num - 1) % 9. Zero is handled separately. This gives
+an O(1) time and O(1) space solution without loops or recursion.
+
+===========================================================
+EDGE CASES:
+===========================================================
+
+1. num = 0       → Output 0
+2. num = 1       → Output 1
+3. num = 9       → Output 9
+4. num = 10      → Output 1
+5. num = 18      → Output 9
+6. num = 38      → Output 2
+7. num = 99      → Output 9
+8. num = 12345   → Output 6
+
+===========================================================
+COMMON MISTAKES:
+===========================================================
+
+1. Applying the formula without handling num = 0.
+2. Using num % 9 directly:
+      num % 9
+   This returns 0 for positive multiples of 9, but the
+   digital root of a positive multiple of 9 is 9.
+3. Confusing normal digit sum with digital root.
+4. Using the digital root formula when the problem asks for
+   the sum of digits only once.
+5. Forgetting that the formula is intended for non-negative
+   integers in this problem.
+
+===========================================================
+WHEN TO USE THE DIGITAL ROOT FORMULA:
+===========================================================
+
+Use it when the problem asks:
+1. Repeatedly add digits until one digit remains.
+2. Find the digital root.
+3. Reduce a number to a single digit.
+4. Solve Add Digits without loops or recursion.
+5. Achieve O(1) time complexity.
+
+Do not use it when the problem asks:
+1. Find the sum of digits only once.
+2. Reverse a number.
+3. Count digits.
+4. Find the product of digits.
+5. Print every intermediate digit sum.
+
+===========================================================
+RELATED PROBLEMS:
+===========================================================
+
+1. Sum of Digits of a Number
+2. Digital Root
+3. Reverse a Number
+4. Palindrome Number
+5. Armstrong Number
+6. Count Digits
+7. Product of Digits
+8. Sum of Even and Odd Digits
+9. Add Digits - LeetCode 258
+
+===========================================================
+RELATED LINKS:
+===========================================================
+
+1. LeetCode 258 - Add Digits:
+   https://leetcode.com/problems/add-digits/
+
+2. Digital Root:
+   https://www.geeksforgeeks.org/dsa/digital-root/
+
+3. LeetCode Discussion - Digital Root:
+   https://leetcode.com/discuss/post/565425/digital-root-and-iterations/
+
+===========================================================
+FINAL REVISION:
+===========================================================
+
+Brute Force:
+Repeatedly calculate digit sums using nested loops.
+
+Optimal:
+int result = (num == 0) ? 0 : 1 + (num - 1) % 9;
+
+Brute Force Time  : O(d)
+Optimal Time      : O(1)
+
+Brute Force Space : O(1)
+Optimal Space     : O(1)
+
+===========================================================
+*/
