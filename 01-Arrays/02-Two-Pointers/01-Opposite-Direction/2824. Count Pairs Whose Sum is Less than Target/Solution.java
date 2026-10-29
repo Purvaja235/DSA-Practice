@@ -13,7 +13,7 @@
 import java.util.Collections;
 import java.util.List;
 
-class SolutionBrute {
+class SolutionBruteForce {
     public int countPairs(List<Integer> nums, int target) {
 
         int count = 0;
